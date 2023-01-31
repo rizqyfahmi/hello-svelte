@@ -1,5 +1,9 @@
 <script>
-	export let name;
+	let firstname = "John";
+	let lastname = "Doe";
+	
+	// reactive values (it reacts for firstname or lastname change)
+	$: name = firstname + " " + lastname;
 </script>
 
 <main>
