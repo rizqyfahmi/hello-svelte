@@ -33,7 +33,7 @@
 <main class="container">
 	<FeedbackForm />
 	<FeedbackStats {count} {average} />
-	<FeedbackList {feedback} on:delete-feedback={onDeleteFeedback} />
+	<FeedbackList on:delete-feedback={onDeleteFeedback} />
 </main>
 
 <style>
