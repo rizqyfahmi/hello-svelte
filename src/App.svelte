@@ -1,14 +1,17 @@
 <script>
 	let firstname = "John";
 	let lastname = "Doe";
+	let color = "blue";
 	
 	// reactive values (it reacts for firstname or lastname change)
 	$: name = firstname + " " + lastname;
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
+	<h1 style="color: {color};">Hello {name}!</h1>
 	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+
+	<button on:click={() => color = "purple"}>Click</button>
 </main>
 
 <style>
