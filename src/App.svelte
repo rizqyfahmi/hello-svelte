@@ -2,18 +2,24 @@
 	let firstname = "John";
 	let lastname = "Doe";
 	let color = "blue";
+	let showText = false
 	
 	// reactive values (it reacts for firstname or lastname change)
 	$: name = firstname + " " + lastname;
 
 	const toggle = () => {
 		color = (color === "blue") ? "red" : "blue"
+		showText = !showText
 	}
 </script>
 
 <main>
 	<h1 style="color: {color};">Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	{#if showText}
+		<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	{:else}
+		<p>No Text</p>
+	{/if}
 
 	<button on:click={toggle}>Click</button>
 </main>
