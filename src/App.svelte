@@ -2,7 +2,11 @@
 	let firstname = "John";
 	let lastname = "Doe";
 	let color = "blue";
-	let showText = false
+	let showText = false;
+	let users = [
+		{id: "1", name: "Sara"},
+		{id: "2", name: "Bob"},
+	];
 	
 	// reactive values (it reacts for firstname or lastname change)
 	$: name = firstname + " " + lastname;
@@ -22,6 +26,10 @@
 	{/if}
 
 	<button on:click={toggle}>Click</button>
+
+	{#each users as user (user.id)}
+		<h3>{user.id} {user.name}</h3>
+	{/each}
 </main>
 
 <style>
