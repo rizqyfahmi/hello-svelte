@@ -19,6 +19,9 @@
 		},
 	]
 
+	$: count = feedback.length;
+	$: average = feedback.reduce((i, { rating }) => i + rating, 0) / feedback.length
+
 	const onDeleteFeedback = (e) => {
 		const itemId = e.detail;
 		feedback = feedback.filter((item) => item.id != itemId);
@@ -26,7 +29,7 @@
 </script>
 
 <main class="container">
-	<FeedbackList feedback={feedback} on:delete-feedback={onDeleteFeedback} />
+	<FeedbackList {feedback} on:delete-feedback={onDeleteFeedback} />
 </main>
 
 <style>
