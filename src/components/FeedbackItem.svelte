@@ -1,11 +1,12 @@
 <script>
-    import { createEventDispatcher } from "svelte";
+    import { FeedbackStore } from "../stores"; 
     import Card from "./Card.svelte";
     export let item;
 
-    const dispatch = createEventDispatcher();
     const onDelete = (id) => {
-        dispatch("delete-feedback", id);
+        FeedbackStore.update((feedback) => {
+            return feedback.filter((feedback) => feedback.id != id)
+        })
     }
 </script>
 

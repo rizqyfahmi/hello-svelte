@@ -1,21 +1,46 @@
 <script>
+    import {v4 as uuidv4} from "uuid";
+    import { FeedbackStore } from "../stores";
     import Button from "./Button.svelte";
     import Card from "./Card.svelte";
+    import RatingSelect from "./RatingSelect.svelte";
+    
 
     let text = '';
     let btnDisable = true;
     let min = 10;
     let message = '';
+    let rating = -1;
+
+    const onSelect = (e) => {
+        rating = e.detail 
+        console.log(rating);
+    }
 
     const onInput = () => {
         if (text.trim().length <= min) {
             message = `Text must be at least ${min} characters`
             btnDisable = true;
-            return;
+        } else {
+            message = '';
+            btnDisable = false;
+        }
+    }
+
+    const onSubmit = () => {
+        const param = {
+            id: uuidv4(),
+            text,
+            rating: +rating
         }
 
-        message = '';
-        btnDisable = false;
+        FeedbackStore.update((feedback) => {
+            return [param, ...feedback]
+        });
+
+        text = '';
+        btnDisable = true;
+        rating = -1;
     }
 </script>
 
@@ -23,9 +48,10 @@
     <header>
         <h2>How would you rate your service with us?</h2>
     </header>
-    <form>
+    <form on:submit|preventDefault={onSubmit}>
+        <RatingSelect on:rating-select={onSelect} selected={rating} />
         <div class="input-group">
-            <input type="text" on:input={onInput} bind:value={text} placeholder="Tell us something that keeps you comming back" />
+            <input type="text" on:keyup={onInput} bind:value={text} placeholder="Tell us something that keeps you comming back" />
             <Button type="submit" disabled={btnDisable}>Send</Button>
         </div>
         {#if message}
