@@ -9,6 +9,7 @@
 </script>
 
 <main class="main">
+    <h1 >Hello there!</h1>
 	<Content {people} />
 </main>
 
@@ -16,5 +17,9 @@
     .main {
         display: block;
         padding: 0px 16px;
+    }
+    
+    h1 {
+        text-align: center;
     }
 </style>

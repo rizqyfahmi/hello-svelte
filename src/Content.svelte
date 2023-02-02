@@ -15,7 +15,7 @@
             {:else}
                 <div class="item-category">Gen Alpha</div>
             {/if}
-            <button class="item-delete" on:click={() => { people = people.filter((p) => p.id != person.id) }}>x</button>
+            <button class="item-delete" class:btn-disable={person.age > 25} disabled={person.age > 25} on:click={() => { people = people.filter((p) => p.id != person.id) }}>x</button>
         </div>
     {:else}
         <div class="result">There are no people to know</div>
@@ -23,12 +23,12 @@
 </div>
 
 <style>
-
     .content {
         display: grid;
         row-gap: 12px;
         grid-template-columns: repeat(12, minmax(0, 1fr));
         grid-template-rows: auto auto;
+        color: #1BB0DF
     }
 
     .result {
@@ -63,5 +63,10 @@
 
     .item-category {
         margin-right: 8px;
+    }
+
+    .btn-disable {
+        background: hwb(210 60% 30%);
+        color: #ffffff
     }
 </style>
