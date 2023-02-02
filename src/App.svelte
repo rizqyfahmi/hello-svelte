@@ -1,11 +1,14 @@
 <script>
     let firstname = "";
     let lastname = "";
+
+    // React to changes in either the firstname or lastname. 
+    $: fullname = `${firstname} ${lastname}`;
 </script>
 
 <main class="main">
 	<div class="content">
-        <h3 class="result">Hello: {firstname} {lastname}</h3>
+        <h3 class="result">Hello: {fullname}</h3>
         <input type="text" placeholder="Enter your first name here..." class="input-firstname" bind:value={firstname}/>
         <input type="text" placeholder="Enter your last name here..." class="input-lastname" bind:value={lastname}/>
     </div>
@@ -55,5 +58,4 @@
     .input-lastname {
         grid-column: 7/9;
     }
-
 </style>
