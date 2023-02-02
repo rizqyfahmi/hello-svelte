@@ -23,12 +23,12 @@
 </div>
 
 <style>
-
     .content {
         display: grid;
         row-gap: 12px;
         grid-template-columns: repeat(12, minmax(0, 1fr));
         grid-template-rows: auto auto;
+        color: #1BB0DF
     }
 
     .result {
