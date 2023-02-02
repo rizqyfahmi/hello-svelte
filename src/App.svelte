@@ -10,6 +10,8 @@
 	<div class="content">
         {#each people as person (person.id)}
             <div class="result">{person.name}</div>
+        {:else}
+            <div class="result">There are no people to know</div>
         {/each}
     </div>
 </main>
