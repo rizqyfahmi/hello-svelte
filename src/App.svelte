@@ -1,7 +1,7 @@
 <script>
     /*
-        One way data binding:
-        We can only update the name by button and input text, but when we change it by button, we don't affect the value of the input text.
+        Two way data binding:
+        We can only update the name by button and input text.
     */
     let name = "John";
 
@@ -17,7 +17,7 @@
 <main class="main">
 	<div class="content">
         <h3 class="result">Hello: {name}</h3>
-        <input type="text" placeholder="Enter a value here" class="input" on:input={onInput} />
+        <input type="text" placeholder="Enter a value here" class="input" on:input={onInput} value={name}/>
         <button class="button" on:click={onReset}>Reset</button>
     </div>
 </main>
