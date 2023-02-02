@@ -4,12 +4,21 @@
         { id: 2, name: "Mario" },
         { id: 3, name: "Sarah" }
     ];
+
+    const onDelete = (id) => {
+        people = people.filter((person) => person.id != id)
+    }
 </script>
 
 <main class="main">
 	<div class="content">
         {#each people as person (person.id)}
-            <div class="result">{person.name}</div>
+            <div class="item">
+                <div class="item-content">
+                    {person.name}
+                </div>
+                <button class="item-delete" on:click={() => onDelete(person.id)}>x</button>
+            </div>
         {:else}
             <div class="result">There are no people to know</div>
         {/each}
@@ -34,6 +43,28 @@
         border: 1px solid #EBEDF0;
         padding: 12px;
         background: #ffffff;
+        border-radius: 8px;
+    }
+
+    .item {
+        grid-column: 5/9;
+        border: 1px solid #EBEDF0;
+        padding: 12px;
+        background: #ffffff;
+        border-radius: 8px;
+        display: flex
+    }
+
+    .item-content {
+        flex: 1
+    }
+
+    .item-delete {
+        background-color: #FF3636;
+        border: 0px;
+        color: #ffffff;
+        height: 24px;
+        width: 24px;
         border-radius: 8px;
     }
 </style>
