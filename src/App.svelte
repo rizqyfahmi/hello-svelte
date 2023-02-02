@@ -1,20 +1,25 @@
 <script>
-    /*
-        Two way data binding:
-        We can only update the name by button and input text.
-    */
-    let name = "John";
+    let firstname = "";
+    let lastname = "";
+    let color = 0;
 
-    const onReset = () => {
-        name = "John"
+    // (Reactive Values) React to changes in either the firstname or lastname. 
+    $: fullname = `${firstname} ${lastname}`;
+    // (Reactive Statements) React to changes in either the fullname. 
+    $: {
+        if (fullname.length % 2 == 0) {
+            color = "green";
+        } else {
+            color = "red";
+        }
     }
 </script>
 
 <main class="main">
 	<div class="content">
-        <h3 class="result">Hello: {name}</h3>
-        <input type="text" placeholder="Enter a value here" class="input" bind:value={name}/>
-        <button class="button" on:click={onReset}>Reset</button>
+        <h3 class="result" style="color: {color}">Hello: {fullname}</h3>
+        <input type="text" placeholder="Enter your first name here..." class="input-firstname" bind:value={firstname}/>
+        <input type="text" placeholder="Enter your last name here..." class="input-lastname" bind:value={lastname}/>
     </div>
 </main>
 
@@ -35,35 +40,31 @@
         grid-column: 5/9;
     }
 
-    .input {
+    input {
         font-size: 16px;
         line-height: 24px;
         border: 1px solid #EBEDF0;
         padding: 12px 16px;
         border-radius: 6px;
-        grid-column: 5/8;
     }
 
-    .input::placeholder {
+    input::placeholder {
         color: #B3BCC5;
     }
 
-    .input:-ms-input-placeholder{
+    input:-ms-input-placeholder{
         color: #B3BCC5;
     }
 
-    .input::-ms-input-placeholder {
+    input::-ms-input-placeholder {
         color: #B3BCC5;
     }
 
-    .button {
-        color: #ffffff;
-        border: 0px;
-        font-size: 16px;
-        line-height: 24px;
-        background: #F07126;
-        padding: 12px 16px;
-        border-radius: 8px;
-        grid-column: 8/9;
+    .input-firstname {
+        grid-column: 5/7;
+    }
+
+    .input-lastname {
+        grid-column: 7/9;
     }
 </style>
