@@ -5,9 +5,6 @@
         { id: 3, name: "Sarah" }
     ];
 
-    const onDelete = (id) => {
-        people = people.filter((person) => person.id != id)
-    }
 </script>
 
 <main class="main">
@@ -17,7 +14,7 @@
                 <div class="item-content">
                     {person.name}
                 </div>
-                <button class="item-delete" on:click={() => onDelete(person.id)}>x</button>
+                <button class="item-delete" on:click={() => { people = people.filter((p) => p.id != person.id) }}>x</button>
             </div>
         {:else}
             <div class="result">There are no people to know</div>
