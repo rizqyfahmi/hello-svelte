@@ -1,8 +1,8 @@
 <script>
     let people = [
-        { id: 1, name: "John" },
-        { id: 2, name: "Mario" },
-        { id: 3, name: "Sarah" }
+        { id: 1, name: "John", age: 17 },
+        { id: 2, name: "Mario", age: 24},
+        { id: 3, name: "Sarah", age: 31}
     ];
 
 </script>
@@ -14,6 +14,13 @@
                 <div class="item-content">
                     {person.name}
                 </div>
+                {#if person.age > 25}
+                    <div class="item-category">Gen Z</div>
+                {:else if person.age > 17}
+                    <div class="item-category">Gen Y</div>
+                {:else}
+                    <div class="item-category">Gen Alpha</div>
+                {/if}
                 <button class="item-delete" on:click={() => { people = people.filter((p) => p.id != person.id) }}>x</button>
             </div>
         {:else}
@@ -63,5 +70,9 @@
         height: 24px;
         width: 24px;
         border-radius: 8px;
+    }
+
+    .item-category {
+        margin-right: 8px;
     }
 </style>
