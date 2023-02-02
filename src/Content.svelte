@@ -1,10 +1,19 @@
 <script>
+    import { createEventDispatcher } from "svelte";
+
     export let people;
+
+    const dispatch = createEventDispatcher();
+
+    const onClick = () => {
+        dispatch("open")
+    }
 </script>
 
 <div class="content">
+    <button class="column-center btn-modal" on:click={onClick}>Open Modal</button>
     {#each people as person (person.id)}
-        <div class="item">
+        <div class="column-center item">
             <div class="item-content">
                 {person.name}
             </div>
@@ -18,7 +27,7 @@
             <button class="item-delete" class:btn-disable={person.age > 25} disabled={person.age > 25} on:click={() => { people = people.filter((p) => p.id != person.id) }}>x</button>
         </div>
     {:else}
-        <div class="result">There are no people to know</div>
+        <div class="column-center result">There are no people to know</div>
     {/each}
 </div>
 
@@ -31,8 +40,11 @@
         color: #1BB0DF
     }
 
+    .column-center {
+        grid-column: 5/9;    
+    }
+
     .result {
-        grid-column: 5/9;
         border: 1px solid #EBEDF0;
         padding: 12px;
         background: #ffffff;
@@ -40,7 +52,6 @@
     }
 
     .item {
-        grid-column: 5/9;
         border: 1px solid #EBEDF0;
         padding: 12px;
         background: #ffffff;
@@ -66,7 +77,15 @@
     }
 
     .btn-disable {
-        background: hwb(210 60% 30%);
+        background: #99a6b3;
         color: #ffffff
+    }
+
+    .btn-modal {
+        border-radius: 8px;
+        padding: 12px;
+        border: 0px;
+        color: #ffffff;
+        background-color: #F07126;
     }
 </style>
