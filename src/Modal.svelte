@@ -14,7 +14,7 @@
 </script>
 
 {#if showModal}
-  <div class="backdrop" class:promo={isPromo} on:mousedown={onClick}>
+  <div class="backdrop" class:promo={isPromo} on:mousedown|self={onClick}>
     <div class="modal">
       <p>{message}</p>
     </div>

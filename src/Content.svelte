@@ -11,7 +11,7 @@
 </script>
 
 <div class="content">
-    <button class="column-center btn-modal" on:click={onClick}>Open Modal</button>
+    <button class="column-center btn-modal" on:click|once={onClick}>Open Modal</button>
     {#each people as person (person.id)}
         <div class="column-center item">
             <div class="item-content">
