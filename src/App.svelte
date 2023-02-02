@@ -1,14 +1,23 @@
 <script>
     let firstname = "";
     let lastname = "";
+    let color = 0;
 
-    // React to changes in either the firstname or lastname. 
+    // (Reactive Values) React to changes in either the firstname or lastname. 
     $: fullname = `${firstname} ${lastname}`;
+    // (Reactive Statements) React to changes in either the fullname. 
+    $: {
+        if (fullname.length % 2 == 0) {
+            color = "green";
+        } else {
+            color = "red";
+        }
+    }
 </script>
 
 <main class="main">
 	<div class="content">
-        <h3 class="result">Hello: {fullname}</h3>
+        <h3 class="result" style="color: {color}">Hello: {fullname}</h3>
         <input type="text" placeholder="Enter your first name here..." class="input-firstname" bind:value={firstname}/>
         <input type="text" placeholder="Enter your last name here..." class="input-lastname" bind:value={lastname}/>
     </div>
