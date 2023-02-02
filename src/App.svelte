@@ -5,10 +5,6 @@
     */
     let name = "John";
 
-    const onInput = (e) => {
-        name = e.target.value;
-    }
-
     const onReset = () => {
         name = "John"
     }
@@ -17,7 +13,7 @@
 <main class="main">
 	<div class="content">
         <h3 class="result">Hello: {name}</h3>
-        <input type="text" placeholder="Enter a value here" class="input" on:input={onInput} value={name}/>
+        <input type="text" placeholder="Enter a value here" class="input" bind:value={name}/>
         <button class="button" on:click={onReset}>Reset</button>
     </div>
 </main>
