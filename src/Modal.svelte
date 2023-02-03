@@ -7,6 +7,7 @@
   <div class="backdrop" class:promo={isPromo} on:mousedown|self>
     <div class="modal">
       <slot></slot>
+      <slot name="description"></slot>
     </div>
   </div>
 {/if}

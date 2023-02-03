@@ -20,9 +20,10 @@
 </script>
 
 <main class="main">
-    <h1 >Hello there!</h1>
+    <h1>Hello there!</h1>
 	<Content on:open={onClick} {people} />
     <Modal {showModal} on:mousedown={onClick}>
+        <div slot="description" class="description">Hello World</div>
         <h3>Add a new person</h3>
         <form>
             <input type="text" class="input" placeholder="Enter name here..." />
@@ -42,6 +43,11 @@
     }
     form {
         display: flex;
+    }
+    .description {
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: #03213E
     }
     .input {
         flex: 1;
