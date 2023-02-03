@@ -22,7 +22,7 @@
 <main class="main">
     <h1 >Hello there!</h1>
 	<Content on:open={onClick} {people} />
-    <Modal {showModal} on:click={onClick} />
+    <Modal {showModal} on:mousedown={onClick} />
 </main>
 
 <style>

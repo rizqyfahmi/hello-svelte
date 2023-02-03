@@ -1,20 +1,11 @@
 <script>
-    import { createEventDispatcher } from "svelte";
-
     export let showModal = false;
     export let isPromo = false;
-    export let message = 'default message';
-
-    const dispatch = createEventDispatcher();
-
-    const onClick = () => {
-        dispatch("click")
-    }
-  
+    export let message = 'default message';  
 </script>
 
 {#if showModal}
-  <div class="backdrop" class:promo={isPromo} on:mousedown|self={onClick}>
+  <div class="backdrop" class:promo={isPromo} on:mousedown|self>
     <div class="modal">
       <p>{message}</p>
     </div>
