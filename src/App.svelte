@@ -22,7 +22,13 @@
 <main class="main">
     <h1 >Hello there!</h1>
 	<Content on:open={onClick} {people} />
-    <Modal {showModal} message={"Hello World"} on:mousedown={onClick} />
+    <Modal {showModal} on:mousedown={onClick}>
+        <h3>Add a new person</h3>
+        <form>
+            <input type="text" class="input" placeholder="Enter name here..." />
+            <button class="button">Add Person</button>
+        </form>
+    </Modal>
 </main>
 
 <style>
@@ -33,5 +39,35 @@
     
     h1 {
         text-align: center;
+    }
+    form {
+        display: flex;
+    }
+    .input {
+        flex: 1;
+        font-size: 16px;
+        line-height: 24px;
+        border: 1px solid #EBEDF0;
+        padding: 12px 16px;
+        border-radius: 6px;
+        margin-right: 12px;
+    }
+    .input::placeholder {
+        color: #B3BCC5;
+    }
+    .input:-ms-input-placeholder{
+        color: #B3BCC5;
+    }
+    .input::-ms-input-placeholder {
+        color: #B3BCC5;
+    }
+    .button {
+        color: #ffffff;
+        border: 0px;
+        font-size: 16px;
+        line-height: 24px;
+        background: #F07126;
+        padding: 12px 16px;
+        border-radius: 8px;
     }
 </style>
