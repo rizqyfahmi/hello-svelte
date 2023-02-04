@@ -1,5 +1,6 @@
 <script>
-    import { createEventDispatcher } from "svelte";
+    import PollStore from "../stores/PollStore";
+    import Button from "./Button.svelte";
     import Card from "./Card.svelte";
 
     export let poll;
@@ -8,10 +9,22 @@
     $: percentA = ((poll.voteA / totalVote) * 100)
     $: percentB = ((poll.voteB / totalVote) * 100)
 
-    const dispatch = createEventDispatcher();
     const onVote = (id, key) => {
-        dispatch("vote", { id, key });
+        PollStore.update((currentPolls) => {
+            const tempPolls = [...currentPolls];
+            const selectedPoll = tempPolls.find((poll) => poll.id == id)
+            
+            selectedPoll[key]++;
+
+            return tempPolls;
+        })
     }
+
+    const onDelete = (id) => {
+       PollStore.update((currentPolls) => {
+            return currentPolls.filter((poll) => poll.id != id);
+        }) 
+    } 
 </script>
 <Card>
     <div class="poll">
@@ -25,6 +38,7 @@
             <div class="percent percent-b" style="width: {percentB}%"></div>
             <span>{poll.answerB} ({poll.voteB})</span>
         </div>
+        <Button color={"#F04438"} on:click={() => onDelete(poll.id)}>Delete</Button>
     </div>
 </Card>
 <style>
@@ -58,10 +72,12 @@
     }
 
     .percent-a {
+        border-left: 2px solid rgba(242, 127, 60, 1);
         background-color: rgba(242, 127, 60, .2)
     }
 
     .percent-b {
+        border-left: 2px solid rgba(46, 144, 250, 1);
         background-color: rgba(46, 144, 250, .2)
     }
 

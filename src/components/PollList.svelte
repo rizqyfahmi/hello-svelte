@@ -1,15 +1,16 @@
 <script>
     import PollItem from "./PollItem.svelte";
-
-    export let items = [];
+    import PollStore from "../stores/PollStore";
 </script>
+
 <div class="content">
-    {#each items as item (item.id)}
+    {#each $PollStore as item (item.id)}
         <PollItem poll={item} on:vote />
     {:else}
         <p class="no-data">There are no polls yet</p>
     {/each}
 </div>
+
 <style>
     .content {
         display: grid;

@@ -1,10 +1,10 @@
 <script>
     import { createEventDispatcher } from "svelte";
+    import PollStore from "../stores/PollStore";
     import Button from "./Button.svelte";
 
     let fields = { question: "", answerA: "", answerB: "" };
     let errorFields = { question: "", answerA: "", answerB: "" };
-
 
     const dispatch = createEventDispatcher();
     const onSubmit = () => {
@@ -27,12 +27,19 @@
         
         if (!isValid) return;
 
-        dispatch("submit", {
+        const data = {
             ...fields,
             voteA: 0,
             voteB: 0,
             id: Math.random()
-        })
+        };
+
+        PollStore.update((currentPolls) => [
+            ...currentPolls,
+            data
+        ]);
+        
+        dispatch("submit")
     }
 </script>
 

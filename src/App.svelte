@@ -10,11 +10,7 @@
 
     let polls = [];
 
-    const onSubmitForm = (value) => {
-      polls = [
-        ...polls,
-        value.detail
-      ]
+    const onSubmitForm = () => {
       activeItem = tabItems[0];
     }
 
@@ -24,7 +20,7 @@
       const selectedPoll = tempPolls.find((poll) => poll.id == id)
       
       selectedPoll[key]++;
-      
+
       polls = tempPolls;
     }
 </script>
@@ -33,7 +29,7 @@
 <main>
   <Tab items={tabItems} {activeItem} on:TabClick={(data) => (activeItem = data.detail)} />
   {#if activeItem === tabItems[0]}
-    <PollList items={polls} on:vote={onVote} />
+    <PollList on:vote={onVote} />
   {:else}
     <Form on:submit={onSubmitForm}/>
   {/if}

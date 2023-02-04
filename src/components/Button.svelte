@@ -1,6 +1,8 @@
-<script></script>
+<script>
+    export let color = "#F07126";
+</script>
 <div class="button-container">
-    <button>
+    <button style="background: {color}" on:click>
         <slot></slot>
     </button>
 </div>
@@ -16,7 +18,6 @@
         border: 0px;
         font-size: 16px;
         line-height: 24px;
-        background: #F07126;
         padding: 12px 16px;
         border-radius: 8px;
     }
