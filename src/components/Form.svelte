@@ -1,9 +1,26 @@
 <script>
     import Button from "./Button.svelte";
 
-    let fields = { question: "", answerA: "", answerB: "" }
+    let fields = { question: "", answerA: "", answerB: "" };
+    let errorFields = { question: "", answerA: "", answerB: "" };
     
     const onSubmit = () => {
+        errorFields.question = "";
+        if (fields.question.trim().length === 0) {
+            errorFields.question = "This field is required";
+        }
+
+
+        errorFields.answerA = "";
+        if (fields.answerA.trim().length === 0) {
+            errorFields.answerA = "This field is required";
+        }
+
+        errorFields.answerB = "";
+        if (fields.answerB.trim().length === 0) {
+            errorFields.answerB = "This field is required";
+        }
+
         console.log(fields);
     }
 </script>
@@ -13,14 +30,23 @@
         <div class="input-group">
             <label for="question">Poll Question: </label>
             <input type="text" id="question" placeholder="Enter a question here..." bind:value={fields.question} />
+            {#if errorFields.question}
+                <p class="error-message">{errorFields.question}</p>
+            {/if}
         </div>
         <div class="input-group">
-            <label for="question">Answer A: </label>
-            <input type="text" id="question" placeholder="Enter your first option here..." bind:value={fields.answerA} />
+            <label for="answerA">Answer A: </label>
+            <input type="text" id="answerA" placeholder="Enter your first option here..." bind:value={fields.answerA} />
+            {#if errorFields.answerA}
+                <p class="error-message">{errorFields.answerA}</p>
+            {/if}
         </div>
         <div class="input-group">
             <label for="question">Answer B: </label>
             <input type="text" id="question" placeholder="Enter your second option here..." bind:value={fields.answerB} />
+            {#if errorFields.question}
+                <p class="error-message">{errorFields.question}</p>
+            {/if}
         </div>
         <Button>Send</Button>
     </form>
@@ -63,5 +89,11 @@
         color: #B3BCC5;
     }
 
-    
+    .error-message {
+        color: #D70C24;
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 400;
+        margin: 8px 0px;
+    }
 </style>
