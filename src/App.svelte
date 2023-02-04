@@ -17,13 +17,23 @@
       ]
       activeItem = tabItems[0];
     }
+
+    const onVote = (data) => {
+      const { id, key } = data.detail;
+      const tempPolls = [...polls];
+      const selectedPoll = tempPolls.find((poll) => poll.id == id)
+      
+      selectedPoll[key]++;
+      
+      polls = tempPolls;
+    }
 </script>
 
 <Header />
 <main>
   <Tab items={tabItems} {activeItem} on:TabClick={(data) => (activeItem = data.detail)} />
   {#if activeItem === tabItems[0]}
-    <PollList items={polls} />
+    <PollList items={polls} on:vote={onVote} />
   {:else}
     <Form on:submit={onSubmitForm}/>
   {/if}

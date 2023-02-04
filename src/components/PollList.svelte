@@ -5,7 +5,7 @@
 </script>
 <div class="content">
     {#each items as item (item.id)}
-        <PollItem poll={item} />
+        <PollItem poll={item} on:vote />
     {:else}
         <p class="no-data">There are no polls yet</p>
     {/each}
