@@ -1,5 +1,5 @@
 <footer>
-  <div class="copyright">Copyright 2020 Rizqy Fahmi</div>
+  <div class="copyright">Copyright 2023 Rizqy Fahmi</div>
 </footer>
 
 <style>
