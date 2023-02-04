@@ -2,19 +2,30 @@
     import Footer from "./components/Footer.svelte";
     import Form from "./components/Form.svelte";
     import Header from "./components/Header.svelte";
+    import PollList from "./components/PollList.svelte";
     import Tab from "./components/Tab.svelte";
 
-    let items = ["Current Polls", "Add New Poll"];
+    let tabItems = ["Current Polls", "Add New Poll"];
     let activeItem = "Current Polls";
+
+    let polls = [];
+
+    const onSubmitForm = (value) => {
+      polls = [
+        ...polls,
+        value.detail
+      ]
+      activeItem = tabItems[0];
+    }
 </script>
 
 <Header />
 <main>
-  <Tab {items} {activeItem} on:TabClick={(data) => (activeItem = data.detail)} />
-  {#if activeItem === items[0]}
-    <p>Poll list goes here</p>
+  <Tab items={tabItems} {activeItem} on:TabClick={(data) => (activeItem = data.detail)} />
+  {#if activeItem === tabItems[0]}
+    <PollList items={polls} />
   {:else}
-    <Form />
+    <Form on:submit={onSubmitForm}/>
   {/if}
 </main>
 <Footer />
@@ -23,6 +34,6 @@
 	main{
     width: 100%;
     max-width: 960px;
-    margin: 40px auto;
+    margin: 40px auto 0px auto;
   }
 </style>

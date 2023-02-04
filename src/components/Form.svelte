@@ -1,15 +1,17 @@
 <script>
+    import { createEventDispatcher } from "svelte";
     import Button from "./Button.svelte";
 
     let fields = { question: "", answerA: "", answerB: "" };
     let errorFields = { question: "", answerA: "", answerB: "" };
-    
+
+
+    const dispatch = createEventDispatcher();
     const onSubmit = () => {
         errorFields.question = "";
         if (fields.question.trim().length === 0) {
             errorFields.question = "This field is required";
         }
-
 
         errorFields.answerA = "";
         if (fields.answerA.trim().length === 0) {
@@ -21,7 +23,16 @@
             errorFields.answerB = "This field is required";
         }
 
-        console.log(fields);
+        const isValid = Object.keys(errorFields).filter((key) => !!errorFields[key]).length === 0;
+        
+        if (!isValid) return;
+
+        dispatch("submit", {
+            ...fields,
+            voteA: 0,
+            voteB: 0,
+            id: Math.random()
+        })
     }
 </script>
 
