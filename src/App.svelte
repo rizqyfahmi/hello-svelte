@@ -1,5 +1,6 @@
 <script>
     import Footer from "./components/Footer.svelte";
+    import Form from "./components/Form.svelte";
     import Header from "./components/Header.svelte";
     import Tab from "./components/Tab.svelte";
 
@@ -13,9 +14,8 @@
   {#if activeItem === items[0]}
     <p>Poll list goes here</p>
   {:else}
-    <p>New poll form component goes here</p>
+    <Form />
   {/if}
-
 </main>
 <Footer />
 

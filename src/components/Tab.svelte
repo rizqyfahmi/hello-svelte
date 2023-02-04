@@ -36,10 +36,11 @@
     }
 
     li {
-        padding: 0px 8px;
+        padding: 12px;
     }
 
     li.active {
         color: #F27F3C;
+        border-bottom: 2px solid #F27F3C;
     }
 </style>
