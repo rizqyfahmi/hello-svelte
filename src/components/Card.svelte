@@ -3,7 +3,7 @@
     import { fade, scale } from "svelte/transition";
 
 </script>
-<div class="container" in:fade out:scale>
+<div class="container" in:fade out:scale|local>
     <slot></slot>
 </div>
 <style>
