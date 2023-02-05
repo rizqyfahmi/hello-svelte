@@ -1,4 +1,9 @@
-<div class="container">
+<script>
+
+    import { fade } from "svelte/transition";
+
+</script>
+<div class="container" transition:fade>
     <slot></slot>
 </div>
 <style>
