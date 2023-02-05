@@ -1,9 +1,9 @@
 <script>
 
-    import { fade } from "svelte/transition";
+    import { fade, scale } from "svelte/transition";
 
 </script>
-<div class="container" transition:fade>
+<div class="container" in:fade out:scale>
     <slot></slot>
 </div>
 <style>
