@@ -1,4 +1,9 @@
-<div class="container">
+<script>
+
+    import { fade, scale } from "svelte/transition";
+
+</script>
+<div class="container" in:fade out:scale|local>
     <slot></slot>
 </div>
 <style>
