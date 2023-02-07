@@ -1,4 +1,5 @@
 <script>
+    import { setContext } from "svelte";
     import Footer from "./components/Footer.svelte";
     import Form from "./components/Form.svelte";
     import Header from "./components/Header.svelte";
@@ -7,8 +8,10 @@
 
     let tabItems = ["Current Polls", "Add New Poll"];
     let activeItem = "Current Polls";
-
     let polls = [];
+
+    const greeting = "Hello World";
+    setContext('greeting-context', greeting);
 
     const onSubmitForm = () => {
       activeItem = tabItems[0];
