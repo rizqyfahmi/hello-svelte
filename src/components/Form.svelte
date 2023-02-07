@@ -1,10 +1,16 @@
 <script>
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
     import PollStore from "../stores/PollStore";
     import Button from "./Button.svelte";
 
     let fields = { question: "", answerA: "", answerB: "" };
     let errorFields = { question: "", answerA: "", answerB: "" };
+
+    let questionRef;
+
+    onMount(() => {
+        questionRef.value = "Hello"
+    });
 
     const dispatch = createEventDispatcher();
     const onSubmit = () => {
@@ -47,7 +53,7 @@
     <form on:submit|preventDefault={onSubmit}>
         <div class="input-group">
             <label for="question">Poll Question: </label>
-            <input type="text" id="question" placeholder="Enter a question here..." bind:value={fields.question} />
+            <input type="text" id="question" placeholder="Enter a question here..." bind:this={questionRef}/>
             {#if errorFields.question}
                 <p class="error-message">{errorFields.question}</p>
             {/if}
