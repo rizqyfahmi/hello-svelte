@@ -1,10 +1,11 @@
 <script>
-    import { setContext } from "svelte";
+    import { onMount, setContext } from "svelte";
     import Footer from "./components/Footer.svelte";
     import Form from "./components/Form.svelte";
     import Header from "./components/Header.svelte";
     import PollList from "./components/PollList.svelte";
     import Tab from "./components/Tab.svelte";
+    import PollStore from "./stores/PollStore";
 
     let tabItems = ["Current Polls", "Add New Poll"];
     let activeItem = "Current Polls";
@@ -26,6 +27,31 @@
 
       polls = tempPolls;
     }
+
+    onMount(async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      const data = await response.json();
+
+      console.log(data);
+
+      PollStore.update((currentPolls) => {
+        const result = data.reduce((accumulator, currentValue) => {
+          return [
+            ...accumulator,
+            {
+              id: currentValue.id,
+              question: currentValue.title,
+              answerA: 'An answer A',
+              answerB: 'An answer B',
+              voteA: 0,
+              voteB: 0,
+            }
+          ];
+        }, []);
+
+        return [...currentPolls, ...result];
+      })
+    });
 </script>
 
 <Header />
