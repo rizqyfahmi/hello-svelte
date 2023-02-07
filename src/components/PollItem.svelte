@@ -1,4 +1,5 @@
 <script>
+    import { getContext } from 'svelte';
     import { tweened } from 'svelte/motion';
     import PollStore from "../stores/PollStore";
     import Button from "./Button.svelte";
@@ -6,6 +7,7 @@
 
     export let poll;
 
+    const greetingContext = getContext('greeting-context')
     const tweenedA = tweened(0)
     const tweenedB = tweened(0)
 
@@ -35,7 +37,7 @@
 </script>
 <Card>
     <div class="poll">
-        <h3>{poll.question}</h3>
+        <h3>{poll.question} - {greetingContext}</h3>
         <p>Total votes: {totalVote}</p>
         <div class="answer" on:mousedown={() => onVote(poll.id, "voteA")}>
             <div class="percent percent-a" style="width: {$tweenedA}%"></div>
