@@ -18,16 +18,6 @@
       activeItem = tabItems[0];
     }
 
-    const onVote = (data) => {
-      const { id, key } = data.detail;
-      const tempPolls = [...polls];
-      const selectedPoll = tempPolls.find((poll) => poll.id == id)
-      
-      selectedPoll[key]++;
-
-      polls = tempPolls;
-    }
-
     onMount(async () => {
       const response = await fetch('https://jsonplaceholder.typicode.com/posts');
       const data = await response.json();

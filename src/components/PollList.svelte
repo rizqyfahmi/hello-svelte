@@ -7,7 +7,7 @@
 <div class="content">
     {#each $PollStore as item (item.id)}
         <div animate:flip={{duration: 500}}>
-            <PollItem poll={item} on:vote />
+            <PollItem poll={item} />
         </div>
     {:else}
         <p class="no-data">There are no polls yet</p>
