@@ -1,5 +1,5 @@
 <script>
-    import { getContext } from 'svelte';
+    import { createEventDispatcher, getContext } from 'svelte';
     import { tweened } from 'svelte/motion';
     import PollStore from "../stores/PollStore";
     import Button from "./Button.svelte";
@@ -7,6 +7,7 @@
 
     export let poll;
 
+    const dispatch = createEventDispatcher();
     const greetingContext = getContext('greeting-context')
     const tweenedA = tweened(0)
     const tweenedB = tweened(0)
@@ -24,7 +25,7 @@
             const selectedPoll = tempPolls.find((poll) => poll.id == id)
             
             selectedPoll[key]++;
-
+            dispatch('vote')
             return tempPolls;
         })
     }

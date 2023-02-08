@@ -53,7 +53,7 @@
     <form on:submit|preventDefault={onSubmit}>
         <div class="input-group">
             <label for="question">Poll Question: </label>
-            <input type="text" id="question" placeholder="Enter a question here..." bind:this={questionRef}/>
+            <input type="text" id="question" placeholder="Enter a question here..." bind:this={questionRef} bind:value={fields.question}/>
             {#if errorFields.question}
                 <p class="error-message">{errorFields.question}</p>
             {/if}

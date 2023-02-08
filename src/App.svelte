@@ -7,15 +7,28 @@
     import Tab from "./components/Tab.svelte";
     import PollStore from "./stores/PollStore";
 
-    let tabItems = ["Current Polls", "Add New Poll"];
-    let activeItem = "Current Polls";
-    let polls = [];
-
+    let tabItems = [
+      {
+        title: "Current Poll",
+        component: PollList
+      },
+      {
+        title: "Add a New Poll",
+        component: Form
+      }
+    ];
+    let activeItem = tabItems[0];
+    
     const greeting = "Hello World";
     setContext('greeting-context', greeting);
 
     const onSubmitForm = () => {
+      console.log("Hello Submit");
       activeItem = tabItems[0];
+    }
+
+    const onVote = () => {
+      console.log('Hello OnVote');
     }
 
     onMount(async () => {
@@ -45,11 +58,8 @@
 <Header />
 <main>
   <Tab items={tabItems} {activeItem} on:TabClick={(data) => (activeItem = data.detail)} />
-  {#if activeItem === tabItems[0]}
-    <PollList on:vote={onVote} />
-  {:else}
-    <Form on:submit={onSubmitForm}/>
-  {/if}
+  <!-- We don't need to add some events from specific component, we only need to add all event from all components -->
+  <svelte:component this={activeItem.component} on:submit={onSubmitForm} on:vote={onVote} />
 </main>
 <Footer />
 
