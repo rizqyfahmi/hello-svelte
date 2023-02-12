@@ -3,7 +3,7 @@
     import Display from "./components/Display.svelte";
     import Footer from "./components/Footer.svelte";
     import Header from "./components/Header.svelte";
-    import { count } from "./stores/store";
+    import { count, customCount } from "./stores/store";
 
     const onIncreament = () => {
       count.update((currentCount) => {
@@ -32,6 +32,9 @@
     <Button on:click={onIncreament}>Increament</Button>
     <Button on:click={onDecreament}>Decreament</Button>
     <Button on:click={onReset}>Reset</Button>
+    <Button on:click={() => customCount.onIncreament(2)}>Increament</Button>
+    <Button on:click={() => customCount.onDecreament(2)}>Decreament</Button>
+    <Button on:click={() => customCount.onReset()}>Reset</Button>
   </div>
 </main>
 <Footer />

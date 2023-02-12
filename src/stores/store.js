@@ -9,3 +9,15 @@ export const color = derived(count, (value) => {
 
     return "#A084DC"
 })
+const createCustomCount = () => {
+    const { subscribe, set, update } = writable(0)
+
+    return {
+        subscribe,
+        onIncreament: (step = 1) => update((value) => value + step),
+        onDecreament: (step = 1) => update((value) => value - step),
+        onReset: () => set(0)
+    }
+}
+
+export const customCount = createCustomCount();
