@@ -26,7 +26,10 @@
 <Header />
 <main>
   <div class="counter-container">
-    <h3>Hello World</h3>
+    <h3 class="counter-full">Hello World</h3>
+    <div class="counter-full">
+      <div class="animate-container">Hello Description</div>    
+    </div>
     <div class="counter-full">
       <Display {count} />
     </div>
@@ -60,5 +63,18 @@
 
   :global(h3) {
     font-size: 50px;
+  }
+
+  .animate-container {
+    animation: zoom 5s infinite;
+  }
+
+  @keyframes -global-zoom {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.5);
+    }
   }
 </style>
