@@ -1,5 +1,5 @@
 <script>
-    import { count, currentDate } from "../stores/store";
+    import { count, currentDate, color } from "../stores/store";
     import moment from "moment";
     import { onDestroy } from "svelte";
 
@@ -11,6 +11,6 @@
 
     onDestroy(unsubscribe)
 </script>
-<h3>Counter: {$count}</h3>
+<h3 style="color: {$color}">Counter: {$count}</h3>
 <h4>Time: {date}</h4>
 <style></style>
