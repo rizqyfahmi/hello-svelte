@@ -3,18 +3,21 @@
     import Display from "./components/Display.svelte";
     import Footer from "./components/Footer.svelte";
     import Header from "./components/Header.svelte";
+    import { count } from "./stores/store";
 
-    let count = 0;
     const onIncreament = () => {
-        count++;
+      count.update((currentCount) => {
+        return currentCount + 1
+      })
     }
 
     const onDecreament = () => {
-        count++;
+      count.update((currentCount) => {
+        return currentCount - 1
+      })
     }
 
     const onReset = () => {
-        count = 0
     }
     
 </script>
