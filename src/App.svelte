@@ -18,6 +18,7 @@
     }
 
     const onReset = () => {
+      count.set(0)
     }
     
 </script>
