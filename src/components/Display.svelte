@@ -9,11 +9,13 @@
         date = moment(value).format("DD-MM-YYYY HH:mm")
     })
     
-    
-
     onDestroy(unsubscribe)
 </script>
 <h3 style="color: {$color}">Counter: {$count}</h3>
 <h3 style="color: {$color}">Custom Counter: {$customCount}</h3>
 <h4>Time: {date}</h4>
-<style></style>
+<style>
+    h4 {
+        animation: zoom 5s infinite;
+    }
+</style>
