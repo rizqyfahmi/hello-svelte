@@ -9,8 +9,6 @@
         date = moment(value).format("DD-MM-YYYY HH:mm")
     })
     
-    
-
     onDestroy(unsubscribe)
 </script>
 <h3 style="color: {$color}">Counter: {$count}</h3>

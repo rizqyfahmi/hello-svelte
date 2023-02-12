@@ -26,6 +26,7 @@
 <Header />
 <main>
   <div class="counter-container">
+    <h3>Hello World</h3>
     <div class="counter-full">
       <Display {count} />
     </div>
@@ -55,5 +56,9 @@
 
   .counter-full {
     grid-column: span 3;
+  }
+
+  :global(h3) {
+    font-size: 50px;
   }
 </style>
