@@ -29,8 +29,8 @@
     <div class="counter-full">
       <Display {count} />
     </div>
-    <Button on:click={onIncreament}>Up</Button>
-    <Button on:click={onDecreament}>Down</Button>
+    <Button on:click={onIncreament}>Increament</Button>
+    <Button on:click={onDecreament}>Decreament</Button>
     <Button on:click={onReset}>Reset</Button>
   </div>
 </main>
